@@ -5,6 +5,11 @@ public class Category {
     private long id;
     private String name;
     private String description;
+    private long viewCounter;
+
+    private void incrementCounter(){
+        this.viewCounter++;
+    }
 
     public Category() {
         this(-1);
@@ -19,9 +24,14 @@ public class Category {
     }
 
     public Category(long id, String name, String description) {
+        this(id, name, description, 0L);
+    }
+
+    public Category(long id, String name, String description, long viewCounter) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.viewCounter = viewCounter;
     }
 
     public long getId() {
@@ -48,6 +58,14 @@ public class Category {
         this.description = description;
     }
 
+    public long getViewCounter() {
+        return viewCounter;
+    }
+
+    public void setViewCounter(long viewCounter) {
+        this.viewCounter = viewCounter;
+    }
+
     @Override
     public String toString() {
         String delimiter = "\n\t";
@@ -56,7 +74,8 @@ public class Category {
         );
         sb.append(delimiter).append("id: ").append(this.getId()).append(',');
         sb.append(delimiter).append("name: ").append(this.getName()).append(',');
-        sb.append(delimiter).append("description: ").append(this.getDescription());
+        sb.append(delimiter).append("description: ").append(this.getDescription()).append(',');
+        sb.append(delimiter).append("viewCounter: ").append(this.getViewCounter());
         return sb.append("\n}").toString();
     }
 

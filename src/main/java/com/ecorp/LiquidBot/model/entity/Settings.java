@@ -2,26 +2,40 @@ package com.ecorp.LiquidBot.model.entity;
 
 public class Settings {
 
+    public long id;
     private String phone;
     private String city;
     private boolean isNotify;
 
     public Settings() {
-        this("");
+        this(-1);
     }
 
-    public Settings(String phone) {
-        this(phone, "");
+    public Settings(long id) {
+        this(id, "");
     }
 
-    public Settings(String phone, String city) {
-        this(phone, city, false);
+    public Settings(long id, String city) {
+        this(id, city, "");
     }
 
-    public Settings(String phone, String city, boolean isNotify) {
+    public Settings(long id, String city, String phone) {
+        this(id, city, phone, false);
+    }
+
+    public Settings(long id, String phone, String city, boolean isNotify) {
+        this.id = id;
         this.phone = phone;
         this.city = city;
         this.isNotify = isNotify;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getPhone() {
@@ -54,6 +68,7 @@ public class Settings {
         final StringBuilder sb = new StringBuilder(
                 this.getClass().getSimpleName().concat(" {")
         );
+        sb.append(delimiter).append("id: ").append(this.getId()).append(',');
         sb.append(delimiter).append("phone: ").append(this.getPhone()).append(',');
         sb.append(delimiter).append("city: ").append(this.getCity()).append(',');
         sb.append(delimiter).append("isNotify: ").append(this.isNotify());
