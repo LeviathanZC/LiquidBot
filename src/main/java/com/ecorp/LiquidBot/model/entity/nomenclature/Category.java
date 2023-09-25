@@ -1,4 +1,4 @@
-package com.ecorp.LiquidBot.model.entity;
+package com.ecorp.LiquidBot.model.entity.nomenclature;
 
 public class Category {
 
@@ -7,7 +7,7 @@ public class Category {
     private String description;
     private long viewCounter;
 
-    private void incrementCounter(){
+    private void incrementCounter() {
         this.viewCounter++;
     }
 
@@ -77,6 +77,38 @@ public class Category {
         sb.append(delimiter).append("description: ").append(this.getDescription()).append(',');
         sb.append(delimiter).append("viewCounter: ").append(this.getViewCounter());
         return sb.append("\n}").toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 113;
+        int result = 1;
+
+        result = (int) ((result * prime) + (id ^ (id >>> 32)));
+        result = (result * prime) + name.hashCode();
+        result = (result * prime) + description.hashCode();
+        result = (int) ((result * prime) + (viewCounter ^ (viewCounter >>> 32)));
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+
+        Category that = (Category) o;
+
+        if (this.id != that.getId()) return false;
+        if (!this.name.equals(that.getName())) return false;
+        if (!this.description.equals(that.getDescription())) return false;
+        return (this.viewCounter == that.getViewCounter());
     }
 
 }

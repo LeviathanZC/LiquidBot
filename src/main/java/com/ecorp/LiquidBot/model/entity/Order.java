@@ -12,6 +12,22 @@ public class Order {
     private Map<Long, Integer> orderList;
     private Map<OrderStatus, LocalDateTime> status;
 
+    public Order() {
+        this(-1);
+    }
+
+    public Order(long id) {
+        this(id, null);
+    }
+
+    public Order(long id, LocalDateTime orderDate) {
+        this(id, orderDate, null);
+    }
+
+    public Order(long id, LocalDateTime orderDate, Map<Long, Integer> orderList) {
+        this(id, orderDate, orderList, null);
+    }
+
     public Order(long id,
                  LocalDateTime orderDate,
                  Map<Long, Integer> orderList,
@@ -65,6 +81,38 @@ public class Order {
         sb.append(delimiter).append("orderList: ").append(this.getOrderList()).append(',');
         sb.append(delimiter).append("status: ").append(this.getStatus());
         return sb.append("\n}").toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 113;
+        int result = 1;
+
+        result = (int) ((result * prime) + (id ^ (id >>> 32)));
+        result = (result * prime) + orderDate.hashCode();
+        result = (result * prime) + orderList.hashCode();
+        result = (result + prime) + status.hashCode();
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Order that = (Order) o;
+
+        if (this.id != that.getId()) return false;
+        if (!this.orderDate.equals(that.orderDate)) return false;
+        if (!this.orderList.equals(that.orderList)) return false;
+        return (this.status.equals(that.getStatus()));
     }
 
 }

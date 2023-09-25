@@ -75,4 +75,36 @@ public class Settings {
         return sb.append("\n}").toString();
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 113;
+        int result = 1;
+
+        result = (int) ((result * prime) + (id ^ (id >>> 32)));
+        result = (result * prime) + phone.hashCode();
+        result = (result * prime) + city.hashCode();
+        result = (result * prime) + (isNotify ? 1 : 0);
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || o.getClass() == this.getClass()) {
+            return false;
+        }
+
+        Settings that = (Settings) o;
+
+        if (this.id != that.getId()) return false;
+        if (!this.phone.equals(that.getPhone())) return false;
+        if (!this.city.equals(that.getCity())) return false;
+        return (this.isNotify = that.isNotify());
+    }
+
 }
