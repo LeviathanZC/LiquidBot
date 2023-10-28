@@ -1,14 +1,10 @@
-package com.ecorp.LiquidBot.model.entity;
+package com.ecorp.LiquidBot.model.entity.nomenclature;
 
 public class Brand {
 
     private long id;
     private String name;
     private long viewCounter;
-
-    private void incrementCounter(){
-        this.viewCounter++;
-    }
 
     public Brand() {
         this(-1);
@@ -26,6 +22,10 @@ public class Brand {
         this.id = id;
         this.name = name;
         this.viewCounter = viewCounter;
+    }
+
+    private void incrementCounter() {
+        this.viewCounter++;
     }
 
     public long getId() {
@@ -62,6 +62,36 @@ public class Brand {
         sb.append(delimiter).append("name: ").append(this.getName()).append(',');
         sb.append(delimiter).append("viewCounter: ").append(this.getViewCounter());
         return sb.append("\n}").toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 113;
+        int result = 1;
+
+        result = (int) ((result * prime) + (id ^ (id >>> 32)));
+        result = (result * prime) + name.hashCode();
+        result = (int) ((result * prime) + (viewCounter ^ (viewCounter >>> 32)));
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+
+        if (this == object) {
+            return true;
+        }
+
+        if (object == null || this.getClass() != object.getClass()) {
+            return false;
+        }
+
+        Brand that = (Brand) object;
+
+        if (this.id != that.getId()) return false;
+        if (!this.name.equals(that.getName())) return false;
+        return this.viewCounter == that.getViewCounter();
     }
 
 }
