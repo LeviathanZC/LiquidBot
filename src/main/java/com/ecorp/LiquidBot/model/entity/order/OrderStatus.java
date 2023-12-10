@@ -1,4 +1,4 @@
-package com.ecorp.LiquidBot.model.entity.enums;
+package com.ecorp.LiquidBot.model.entity.order;
 
 public enum OrderStatus {
 

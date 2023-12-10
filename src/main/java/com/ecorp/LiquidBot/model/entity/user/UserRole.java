@@ -1,6 +1,6 @@
-package com.ecorp.LiquidBot.model.entity.enums;
+package com.ecorp.LiquidBot.model.entity.user;
 
-public enum UserType {
+public enum UserRole {
 
     ADMIN("Администратор"),
     TECH_SUPPORT("Тех. поддержка"),
@@ -11,7 +11,7 @@ public enum UserType {
 
     private final String type;
 
-    UserType(String type) {
+    UserRole(String type) {
         this.type = type;
     }
 

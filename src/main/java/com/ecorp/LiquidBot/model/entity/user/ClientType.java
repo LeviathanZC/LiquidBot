@@ -1,11 +1,11 @@
-package com.ecorp.LiquidBot.model.entity.enums;
+package com.ecorp.LiquidBot.model.entity.user;
 
 public enum ClientType {
 
     POTENTIAL("Потенциальный"),
     INCIDENTAL("Инцидентальный"),
     TEMPORARY("Временный"),
-    STANDARD("Стандартный"),
+    STANDARD("Обычный"),
     LOYAL("Лояльный"),
     REGULAR("Постоянный"),
     ACTIVE("Активный"),
