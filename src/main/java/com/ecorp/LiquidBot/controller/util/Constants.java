@@ -1,4 +1,4 @@
-package com.ecorp.LiquidBot.controller.bot;
+package com.ecorp.LiquidBot.controller.util;
 
 public class Constants {
 

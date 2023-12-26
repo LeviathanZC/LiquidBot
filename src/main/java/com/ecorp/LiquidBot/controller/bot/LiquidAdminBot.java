@@ -1,6 +1,7 @@
 package com.ecorp.LiquidBot.controller.bot;
 
-import com.ecorp.LiquidBot.controller.handler.AdminResponseHandler;
+import com.ecorp.LiquidBot.controller.handler.admin.AdminResponseHandler;
+import com.ecorp.LiquidBot.controller.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
