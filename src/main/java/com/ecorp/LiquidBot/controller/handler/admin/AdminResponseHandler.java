@@ -9,6 +9,7 @@ import org.telegram.abilitybots.api.sender.SilentSender;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
+import java.io.Serializable;
 import java.util.*;
 
 import static com.ecorp.LiquidBot.controller.util.Constants.*;
@@ -47,7 +48,7 @@ public abstract class AdminResponseHandler extends ResponseHandler {
 
     public void replyTo(long chatId, Message message) {
         if (message.getText().equalsIgnoreCase("/stop")) {
-            stopChat(chatId);
+            replyToStop(chatId);
         }
 
         switch (chatStates.get(chatId)) {

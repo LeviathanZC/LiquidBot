@@ -2,7 +2,6 @@ package com.ecorp.LiquidBot.controller.handler;
 
 import com.ecorp.LiquidBot.controller.bot.LiquidAdminBot;
 import com.ecorp.LiquidBot.controller.handler.admin.impl.AdminCityHandler;
-import com.ecorp.LiquidBot.controller.handler.admin.AdminMainHandler;
 import com.ecorp.LiquidBot.controller.handler.admin.AdminResponseHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,8 +29,8 @@ public class HandlerFactory {
     private static class AdminHandlerFactory {
 
         @Bean
-        public static AdminMainHandler obtainMainHandler(AbilityBot bot) {
-            return new AdminMainHandler(bot.silent());
+        public static HandlerContextHolder obtainMainHandler(AbilityBot bot) {
+            return new HandlerContextHolder(bot.silent());
         }
 
         @Bean
