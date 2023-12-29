@@ -18,6 +18,10 @@ import static com.ecorp.LiquidBot.controller.handler.AdminHandlerType.*;
 @Configuration
 public class HandlerFactory {
 
+    @Bean
+    public static SilentSender getSilent(AbilityBot bot) {
+        return bot.silent();
+    }
 
     /*@Bean
     public static AdminAuthHandler obtainAuthHandler(AbilityBot bot) {

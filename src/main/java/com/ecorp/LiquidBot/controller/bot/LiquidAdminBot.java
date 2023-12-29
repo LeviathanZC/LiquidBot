@@ -21,6 +21,7 @@ import org.telegram.abilitybots.api.objects.Reply;
 import org.telegram.abilitybots.api.sender.SilentSender;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import javax.annotation.PostConstruct;
 import java.util.function.BiConsumer;
 
 import static org.telegram.abilitybots.api.objects.Locality.USER;
@@ -42,7 +43,7 @@ public class LiquidAdminBot extends AbilityBot {
         super(env.getProperty("LIQUID_ADMIN_BOT_TOKEN"), "l_i_q_u_i_d_admin_bot");
     }
 
-    @Autowired
+    //@Autowired
     public void setContextHolder(HandlerContextHolder contextHolder) {
         this.contextHolder = contextHolder;
         this.responseHandler = contextHolder.getInitial();

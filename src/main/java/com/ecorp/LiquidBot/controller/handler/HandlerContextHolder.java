@@ -21,12 +21,12 @@ import java.lang.reflect.InvocationTargetException;
 public class HandlerContextHolder {
 
     private final SilentSender silent;
-    private final DBContext db;
+    //private final DBContext db;
 
     @Autowired
-    public HandlerContextHolder(AbilityBot bot) {
-        this.silent = bot.silent();
-        this.db = bot.db();
+    public HandlerContextHolder(SilentSender silent) {
+        this.silent = silent;
+        //this.db = bot.db();
         log.info("HandlerContextHolder has been created");
     }
 
