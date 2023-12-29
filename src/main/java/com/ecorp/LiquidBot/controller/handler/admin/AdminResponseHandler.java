@@ -22,12 +22,13 @@ public abstract class AdminResponseHandler extends ResponseHandler {
     private static final String DB_ADMIN_STATE = "_states";
 
 
-    private final Map<Long, UserAdminState> chatStates;
+    protected final Map<Long, UserAdminState> chatStates;
 
 
     protected AdminResponseHandler(SilentSender sender, DBContext db, String handlerName) {
         super(sender, db, handlerName);
         this.chatStates = db.getMap(DB_ADMIN_PREFIX + handlerName + DB_ADMIN_STATE);
+        log.info(chatStates.toString());
     }
 
     protected void replyToStop(long chatId) {
@@ -36,20 +37,22 @@ public abstract class AdminResponseHandler extends ResponseHandler {
         chatStates.remove(chatId);
     }
 
-    protected void replyToStart(long chatId) {
+    public void replyToStart(long chatId) {
         log.info("start chat with '{}'", chatId);
         prompt(chatId, START_ADMIN_DESC);
         prompt(chatId, SEND_MSG_FOR_AUTHOR);
         chatStates.put(chatId, UserAdminState.AUTHORIZATION);
     }
 
-
-
-
-    public void replyTo(long chatId, Message message) {
+    protected void stopRequest(long chatId, Message message) {
         if (message.getText().equalsIgnoreCase("/stop")) {
             replyToStop(chatId);
         }
+    }
+
+
+    public void replyTo(long chatId, Message message) {
+        stopRequest(chatId, message);
 
         switch (chatStates.get(chatId)) {
             case AUTHORIZATION: {
@@ -67,7 +70,7 @@ public abstract class AdminResponseHandler extends ResponseHandler {
     }
 
     private void replyToAuthorization(long chatId, Message message) {
-
+        System.out.println("GET IT!!!");
     }
 
     private void replyToMainMenuButtons(long chatId, Message message) {
@@ -93,7 +96,7 @@ public abstract class AdminResponseHandler extends ResponseHandler {
         removeKeyboardAndSendTextMessageTo(chatId, text);
     }
 
-    protected boolean userIsActive(long chatId) {
+    public boolean userIsActive(long chatId) {
         return chatStates.containsKey(chatId);
     }
 

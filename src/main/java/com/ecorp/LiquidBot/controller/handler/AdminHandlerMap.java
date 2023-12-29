@@ -7,8 +7,5 @@ import java.util.Map;
 
 public class AdminHandlerMap {
 
-    private final Map<AdminHandlerType, AdminResponseHandler>
-
-    public
 
 }

@@ -24,7 +24,7 @@ public abstract class ResponseHandler {
 
 
 
-    public void sendTextMessageTo(long chatId, String text) {
+    protected void sendTextMessageTo(long chatId, String text) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(text);
@@ -32,7 +32,7 @@ public abstract class ResponseHandler {
         messageList.put(chatId, messageID);
     }
 
-    public void sendTextMessageWithKeyboardTo(long chatId, String text,
+    protected void sendTextMessageWithKeyboardTo(long chatId, String text,
                                   ReplyKeyboard keyboard) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
@@ -42,19 +42,19 @@ public abstract class ResponseHandler {
         messageList.put(chatId, messageID);
     }
 
-    public void removeKeyboardAndSendTextMessageTo(long chatId, String text) {
+    protected void removeKeyboardAndSendTextMessageTo(long chatId, String text) {
         sendTextMessageWithKeyboardTo(chatId, text, KeyboardFactory.getInstance().removeKeyboard());
     }
 
 
 
-    protected abstract void replyTo(long chatId, Message message);
+    public abstract void replyTo(long chatId, Message message);
 
-    protected abstract void replyToStart(long chatId);
+    public abstract void replyToStart(long chatId);
 
     protected abstract void replyToStop(long chatId);
 
 
 
-    protected abstract boolean userIsActive(long chatId);
+    public abstract boolean userIsActive(long chatId);
 }
