@@ -1,15 +1,13 @@
-package com.ecorp.LiquidBot.controller.handler.admin;
+package com.ecorp.LiquidBot.controller.handler.roles.admin;
 
 import com.ecorp.LiquidBot.controller.handler.ResponseHandler;
-import com.ecorp.LiquidBot.controller.handler.UserAdminState;
-import com.ecorp.LiquidBot.controller.util.Constants;
+import com.ecorp.LiquidBot.controller.handler.AdminState;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.abilitybots.api.db.DBContext;
 import org.telegram.abilitybots.api.sender.SilentSender;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
-import java.io.Serializable;
 import java.util.*;
 
 import static com.ecorp.LiquidBot.controller.util.Constants.*;
@@ -22,7 +20,7 @@ public abstract class AdminResponseHandler extends ResponseHandler {
     private static final String DB_ADMIN_STATE = "_states";
 
 
-    protected final Map<Long, UserAdminState> chatStates;
+    protected final Map<Long, AdminState> chatStates;
 
 
     protected AdminResponseHandler(SilentSender sender, DBContext db, String handlerName) {
@@ -41,7 +39,7 @@ public abstract class AdminResponseHandler extends ResponseHandler {
         log.info("start chat with '{}'", chatId);
         prompt(chatId, START_ADMIN_DESC);
         prompt(chatId, SEND_MSG_FOR_AUTHOR);
-        chatStates.put(chatId, UserAdminState.AUTHORIZATION);
+        chatStates.put(chatId, AdminState.AUTHORIZATION);
     }
 
     protected void stopRequest(long chatId, Message message) {
@@ -51,31 +49,7 @@ public abstract class AdminResponseHandler extends ResponseHandler {
     }
 
 
-    public void replyTo(long chatId, Message message) {
-        stopRequest(chatId, message);
 
-        switch (chatStates.get(chatId)) {
-            case AUTHORIZATION: {
-                replyToAuthorization(chatId, message);
-                break;
-            }
-            case MAIN_MENU: {
-                replyToMainMenuButtons(chatId, message);
-                break;
-            }
-            default : {
-                prompt(chatId, Constants.UNEXPECTED_MSG);
-            }
-        }
-    }
-
-    private void replyToAuthorization(long chatId, Message message) {
-        System.out.println("GET IT!!!");
-    }
-
-    private void replyToMainMenuButtons(long chatId, Message message) {
-
-    }
 
 
 

@@ -1,6 +1,6 @@
 package com.ecorp.LiquidBot.controller.handler;
 
-public enum UserAdminState {
+public enum AdminState {
 
     AUTHORIZATION,
     MAIN_MENU,
